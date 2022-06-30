@@ -1,0 +1,92 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        d:DataContext="{d:DesignInstance Type=ViewModels:InvoiceDetailsVM, IsDesignTimeCreatable=True}"
+        xmlns:ViewModels="clr-namespace:RetailManagerUI.ViewModels;assembly=RetailManagerUI.ViewModels" 
+        x:Class="RetailManagerUI.Views.InvoiceDetailsV"
+        mc:Ignorable="d"
+        Title="Adauga Factura" Height="800" Width="800"  Style="{DynamicResource WindowStyle}" WindowStyle="None" ResizeMode="NoResize">
+  
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="ContentRendered">
+            <i:InvokeCommandAction Command="{Binding Window_ContentRendered_Command}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <StackPanel Orientation="Vertical" Margin="10">
+        <Label Content="{Binding Label, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource textForeground }" MinHeight="30"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Margin="10, 50, 10, 100"/>
+        <StackPanel Orientation="Vertical">
+            <ListView ItemContainerStyle="{DynamicResource AlternatingListViewItemStyle}" ItemsSource="{Binding InvoiceDetailsCollection, Mode=TwoWay}" SelectedItem="{Binding SelectedProduct}" AlternationCount="2" SizeChanged="ListView_SizeChanged">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Denumire Produs">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource textBoxStyle}" IsReadOnly="True">
+                                        <TextBox.InputBindings>
+                                            <KeyBinding Key="Enter"/>
+                                        </TextBox.InputBindings>
+                                    </TextBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Cantitate">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource textBoxStyle}" IsReadOnly="True">
+                                        <TextBox.InputBindings>
+                                            <KeyBinding Key="Enter"/>
+                                        </TextBox.InputBindings>
+                                    </TextBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Pret (fara TVA)">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding PurchasePrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource textBoxStyle}" IsReadOnly="True">
+                                        <TextBox.InputBindings>
+                                            <KeyBinding Key="Enter"/>
+                                        </TextBox.InputBindings>
+                                    </TextBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Valoare TVA">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Tax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource textBoxStyle}" IsReadOnly="True">
+                                        <TextBox.InputBindings>
+                                            <KeyBinding Key="Enter"/>
+                                        </TextBox.InputBindings>
+                                    </TextBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Pret de Achizitie">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding TotalPrice , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource textBoxStyle}" IsReadOnly="True">
+                                        <TextBox.InputBindings>
+                                            <KeyBinding Key="Enter"/>
+                                        </TextBox.InputBindings>
+                                    </TextBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        <Button Command="{Binding DeleteProduct_Command}" Style="{DynamicResource deleteButton}" Grid.Row="8" Grid.Column="2" Margin="30" Height="30" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold" Content="Sterge Produs"/>
+    </StackPanel>
+
+</Window>
+

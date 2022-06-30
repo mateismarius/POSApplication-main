@@ -1,0 +1,178 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:System.Windows.Controls"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        d:DataContext="{d:DesignInstance Type=ViewModels:StartupVM, IsDesignTimeCreatable=True}"
+        xmlns:ViewModels="clr-namespace:RetailManagerUI.ViewModels;assembly=RetailManagerUI.ViewModels" xmlns:Toolkit="clr-namespace:Xceed.Wpf.Toolkit" x:Class="RetailManagerUI.Views.StartupV"
+        mc:Ignorable="d"
+        Title="Punct de vanzare" Height="800" Width="1400"  Style="{DynamicResource WindowStyle}" WindowStyle="None" ResizeMode="NoResize" ContentRendered="Window_ContentRendered">
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="ContentRendered">
+            <i:InvokeCommandAction Command="{Binding Window_ContentRendered_Command}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Menu Background="{DynamicResource WindowBackColor}" DockPanel.Dock="Top" Height="25" VerticalAlignment="Top" Foreground="{DynamicResource textForeground}">
+            <MenuItem Header="Fisier" FontSize="16" FontWeight="DemiBold">
+                <MenuItem>
+                    <MenuItem.Header>
+                        <DockPanel>
+                            <TextBlock><Run Text="Schimbare tema"/></TextBlock>
+                            <TextBlock Width="10"/>
+                            <TextBlock HorizontalAlignment="Right"/>
+                        </DockPanel>
+                    </MenuItem.Header>
+                    <MenuItem.Icon>
+                        <Image Height="18" Width="18" Margin="0" Source="Resources/green.png"/>
+                    </MenuItem.Icon>
+                    <MenuItem Header="Light" Click="ThemeChanged_Click">
+                        <MenuItem.Icon>
+                            <Image Height="18" Width="18" Margin="0" Source="Resources/green.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Dark" Click="ThemeChanged_Click">
+                        <MenuItem.Icon>
+                            <Image Height="18" Width="18" Margin="0" Source="Resources/red.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    
+                </MenuItem>
+               
+            </MenuItem>
+        </Menu>
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="11*"/>
+                </Grid.RowDefinitions>
+                <Label/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Facturi" Grid.Row="1" Grid.Column="1" Height="50" FontSize="20" VerticalAlignment="Top"  Command="{Binding OpenInvoiceWindow_Command}" Style="{DynamicResource confirmButton}"/>
+                    <Button Content="Produse" Grid.Row="2" Grid.Column="1" Height="50" FontSize="20" VerticalAlignment="Top"  Command="{Binding OpenProductWindow_Command}" Style="{DynamicResource confirmButton}"/>
+                    <Button Content="Vanzari" Grid.Row="3" Grid.Column="1" Height="50" FontSize="20" VerticalAlignment="Top"  Command="{Binding OpenSaleWindow_Command}" Style="{DynamicResource confirmButton}"/>
+                    <Button Content="Utilizatori" Grid.Row="4" Grid.Column="1" Height="50" FontSize="20" VerticalAlignment="Top" Command="{Binding OpenRegisterWindow_Command}" Style="{DynamicResource confirmButton}"/>
+                    
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1" Margin="5, 30, 5, 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition MinHeight="30" Height="auto"/>
+                        <RowDefinition MinHeight="30" Height="auto"/>
+                        <RowDefinition MinHeight="30" Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Label  Content="Utilizator"  Style="{Binding WindowTitle}"  Foreground="{DynamicResource textForeground}" FontSize="20" FontWeight="DemiBold"/>
+                    <TextBox Grid.Column="1" Margin="5" IsReadOnly="True" Style="{DynamicResource textBoxStyle}" Text="{Binding UserName}" Foreground="{DynamicResource textForeground}" FontSize="14" FontWeight="Bold"/>
+
+                    <Label Content="Rol"  Grid.Row="1" Style="{Binding WindowTitle}" Foreground="{DynamicResource textForeground}" FontSize="20" FontWeight="DemiBold"/>
+                    <TextBox Grid.Row="1" Margin="5"  Grid.Column="1" IsReadOnly="True" Text="{Binding Rol}" Style="{DynamicResource textBoxStyle}" Foreground="{DynamicResource textForeground}" FontSize="14" FontWeight="Bold"/>
+
+                    <Label Grid.Row="2"  Grid.Column="0" Content="Produs" HorizontalAlignment="Left" Width="100" Style="{Binding WindowTitle}" Foreground="{DynamicResource textForeground}" FontSize="20" FontWeight="DemiBold"/>
+                    <Controls:AutoCompleteBox x:Name="acbProducts" Margin="5" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"  ItemsSource="{Binding SourceSearchProducts}" SelectedItem="{Binding ProductsSearchSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ValueMemberBinding="{Binding Text}" Text="{Binding ProductsSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FilterMode="Custom" IsTextCompletionEnabled="True" HorizontalAlignment="Left" Height="35" Width="439" MinimumPrefixLength="1" MaxDropDownHeight="800" IsTabStop="True" TabIndex="0">
+                        <Controls:AutoCompleteBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <!--for each item in list-->
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="400" />
+                                        <ColumnDefinition Width="100" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Text}"/>
+                                    <TextBlock HorizontalAlignment="Right" Foreground="Gray" Text="{Binding Value}" Grid.Column="1" />
+                                </Grid>
+                            </DataTemplate>
+                        </Controls:AutoCompleteBox.ItemTemplate>
+                        <Controls:AutoCompleteBox.InputBindings>
+                            <KeyBinding Key="Enter" Command="{Binding Products_EnterKeyUpAsync_Command}" />
+                        </Controls:AutoCompleteBox.InputBindings>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="DropDownClosing">
+                                <i:InvokeCommandAction Command="{Binding Products_DropDownClosingAsync_Command}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Controls:AutoCompleteBox>
+                    <Label Grid.Row="2" Grid.Column="3" Content="Cantitate" Width="100" Style="{Binding WindowTitle}"  Foreground="{DynamicResource textForeground}" FontSize="20" FontWeight="DemiBold"/>
+                    <TextBox Grid.Row="2" Grid.Column="4"  Height="35" Style="{DynamicResource textBoxStyle}" Text="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource textForeground}" TextAlignment="Center" FontSize="20" FontWeight="Bold"/>
+
+                    <Label Grid.Column="5" Grid.Row="1" Grid.RowSpan="2"  Content="{Binding Amount, StringFormat=N2}"  HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="40" FontWeight="Bold" Foreground="{DynamicResource textForeground}"/>
+                </Grid>
+                <ListView Grid.Row="1" ItemContainerStyle="{DynamicResource AlternatingListViewItemStyle}" SelectedItem="{Binding SelectedSaleItem}" ItemsSource="{Binding ProductCollection}" FontSize="18" Height="450" FontWeight="DemiBold" Margin="5" VerticalAlignment="Top" AlternationCount="2" SizeChanged="ListView_SizeChanged">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Nr. crt." DisplayMemberBinding="{Binding Crt, UpdateSourceTrigger=PropertyChanged}" />
+                            <GridViewColumn Header="Produs" DisplayMemberBinding="{Binding ProductName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <GridViewColumn Header="Cantitate" DisplayMemberBinding="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}"/>
+                            <GridViewColumn Header="Unitate" DisplayMemberBinding="{Binding Unit, UpdateSourceTrigger=PropertyChanged}"/>
+                            <GridViewColumn Header="Pret net" DisplayMemberBinding="{Binding Subtotal, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"/>
+                            <GridViewColumn Header="TVA" DisplayMemberBinding="{Binding Tax, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"/>
+                            <GridViewColumn Header="Pret total" DisplayMemberBinding="{Binding Total, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"/>
+                            <GridViewColumn Header="Valoare" DisplayMemberBinding="{Binding SaleUnitValue, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"/>
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="9*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Column="1" Grid.Row="1" Content="Sterge" Command="{Binding DeleteItem_Command}" Style="{DynamicResource deleteButton}"  Margin="5" FontSize="24" FontWeight="Bold"/>
+                    <Button Grid.Column="2" Grid.Row="1" Content="Plateste" Style="{DynamicResource confirmButton}" Command="{Binding AddSale_Command}"   Margin="5" FontSize="24" FontWeight="Bold"/>
+                </Grid>
+            </Grid>
+            <ScrollViewer Grid.Column="2" Style="{DynamicResource MenuScrollViewer}"/>
+        </Grid>
+    </Grid>
+</Window>

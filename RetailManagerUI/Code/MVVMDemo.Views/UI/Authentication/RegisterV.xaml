@@ -1,0 +1,45 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        d:DataContext="{d:DesignInstance Type=Authentication:RegisterVM, IsDesignTimeCreatable=True}"
+        xmlns:local="clr-namespace:RetailManagerUI.Views.UI.Authentication"
+        xmlns:Authentication="clr-namespace:RetailManagerUI.ViewModels.Authentication;assembly=RetailManagerUI.ViewModels" x:Class="RetailManagerUI.Views.UI.Authentication.RegisterV"
+        mc:Ignorable="d"
+        Title="Inregistrare Utilizatori" Height="400" Width="400" WindowStyle="None" Style="{DynamicResource WindowStyle}">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="12*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" Margin=" 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Nume" Style="{DynamicResource WindowTitleLabel}" Foreground="{DynamicResource textForeground}"/>
+            <Label Content="Prenume" Grid.Row="1"  Style="{DynamicResource WindowTitleLabel}" Foreground="{DynamicResource textForeground}"/>
+            <Label Content="Parola" Grid.Row="2"  Style="{DynamicResource WindowTitleLabel}" Foreground="{DynamicResource textForeground}"/>
+            <Label Content="Confirma Parola"  Grid.Row="3" Style="{DynamicResource WindowTitleLabel}" Foreground="{DynamicResource textForeground}"/>
+            <Label Content="Cod" Grid.Row="4"  Style="{DynamicResource WindowTitleLabel}" Foreground="{DynamicResource textForeground}"/>
+            <TextBox Grid.Column="1" Margin="5" MaxHeight="30" Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource textBoxStyle}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="5" MaxHeight="30" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource textBoxStyle}"/>
+            <PasswordBox x:Name="pwd" Grid.Row="2" Margin="5" MaxHeight="30" Grid.Column="1" PasswordChanged="PasswordChanged" Style="{DynamicResource passwordBoxStyle}"/>
+            <PasswordBox x:Name="pwd1" Grid.Row="3" Margin="5" MaxHeight="30" Grid.Column="1" PasswordChanged="PasswordChangedConfirm" Style="{DynamicResource passwordBoxStyle}"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Margin="5" MaxHeight="30" Text="{Binding Barcode, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource textBoxStyle}"/>
+            <Button Content="Adauga" FontSize="20" FontWeight="Bold" Grid.Row="5" Margin="10" MaxHeight="30" Grid.Column="1" Command="{Binding Register_Command}" Style="{DynamicResource confirmButton}"/>
+            
+        </Grid>        
+    </Grid>
+</Window>
